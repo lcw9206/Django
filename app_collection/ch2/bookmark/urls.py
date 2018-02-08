@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .views import HomeView
+
+from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', HomeView.as_view(), name = 'home'),
-    url(r'^bookmark/', include('bookmark.urls', namespace='bookmark')), # 북마크 앱의 URLCONF를 포함하고, 공간을 bookmark라고 지정
-    url(r'^blog/', include('blog.urls', namespace='blog')), # 블로그 앱의 URLCONF를 포함하고, 공간을 blog라고 지정
+    # Class-based views
+    url(r'^$', BookmarkLV.as_view(), name='index'),     # url 메서드에 name이 붙게되면 bookmark/index와 같이 url 뒤에 name이 추가된다.
+    url(r'^(?P<pk>\d+)/$', BookmarkDV.as_view(), name='detail'),
 ]
