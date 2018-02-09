@@ -30,6 +30,7 @@ def post_list2(request):
     response = render(request, 'dojo/post_list2.html', {'name': name})
     return response
 
+
 def post_list3(request):
 
     return JsonResponse({
