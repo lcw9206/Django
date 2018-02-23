@@ -11,6 +11,8 @@ class Post(models.Model):
     create_date = models.DateTimeField('Create Date', auto_now_add=True)
     modify_date = models.DateTimeField('Modify Date', auto_now=True)
     tag = TagField()
+
+
     class Meta:
         verbose_name = 'post'           # 테이블의 단수 별칭을 post로 지정
         verbose_name_plural = 'posts'   # 테이블의 복수 별칭을 posts로 지정

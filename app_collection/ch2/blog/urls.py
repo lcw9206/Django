@@ -3,7 +3,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from .views import *
-from bookmark.views import BookmarkLV, BookmarkDV
+
 
 urlpatterns = [
 
@@ -30,4 +30,9 @@ urlpatterns = [
 
     # Example: /today/
     url(r'^today/$', PostTAV.as_view(), name='post_today_archive'),
+
+    url(r'^tag/$', TagTV.as_view(), name='tag_cloud'),
+
+    # [^/]+(?u) : / 이외의 문자가 한 번 이상 반복되고 + 앞의 표현식을 unicode로 인식 (한글 인식 가능)
+    url(r'^tag/(?P<tag>[^/]+(?u))/$', PostTOL.as_view(), name='tagged_object_list'),
 ]

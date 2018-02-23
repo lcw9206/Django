@@ -1,12 +1,13 @@
 # blog/views.py
 
 # 클래스형 제네릭 뷰 임포트
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
-from blog.models import Post                # 테이블 조회를 위한 Post 모델 클래스 임포
-
+from .models import Post                # 테이블 조회를 위한 Post 모델 클래스 임포
+from tagging.models import Tag, TaggedItem
+from tagging.views import TaggedObjectList
 # Create your views here.
 
 class PostLV(ListView) :                    # ListView는 테이블에서 객체 리스트를 가져와 출력한다.
@@ -41,3 +42,15 @@ class PostTAV(TodayArchiveView) :           # 오늘 날짜의 객체 리스트 
     model = Post
     date_field = 'modify_date'
 
+class TagTV(TemplateView):
+    template_name = 'tagging/tagging_cloud.html'
+
+class PostLV(ListView):
+    model = Post
+    template_name = 'blog/post_all.html'
+    context_object_name = 'posts'
+    paginate_by = 2
+
+class PostTOL(TaggedObjectList):
+    model = Post
+    template_name = 'tagging/tagging_post_list.html'
