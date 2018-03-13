@@ -25,8 +25,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)    # auto_now_add : 최초 저장될 때, 일시가 저장된다.
     updated_at = models.DateTimeField(auto_now=True)        # auto_now : 갱신될 때마다, 일시가 저장된다.
 
-    class Meta:
-        ordering = ['-id']
+    class Meta:     # 기본 정렬 기준을 주기위한 선언
+        ordering = ['id']
 
-    def __str__(self):
+    def __str__(self):      # 쿼리셋에서 title을 얻기위한 선언
         return self.title
