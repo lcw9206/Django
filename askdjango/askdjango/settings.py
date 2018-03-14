@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'blog.apps.BlogConfig',
     'dojo.apps.DojoConfig',
+    'accounts.apps.AccountsConfig',
 
 ]
 
