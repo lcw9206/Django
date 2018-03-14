@@ -1,6 +1,9 @@
-<body>
-    <h1> AskDjango</h1>
-    <p>Hello World!</p>
+{% extends 'blog/layout.html' %}
+{% block title %}
+    게시글 모아보기
+{% endblock %}
+{% block content %}
+    <h1>게시글</h1>
     <form action="" method="get">
         <input type="text" name="q" value="{{q}}"/>
         <input type="submit" value="검색"/>
@@ -9,10 +12,12 @@
         {% for post in post_list %}
             <li>
                 {{post.id}}
-                <a href="/blog/{{ post.id }}">{{ post.title }}</a>
+                <a href="{% url "post_detail" post.id %}">
+                    {{ post.title }}
+                </a>
                 <small>by {{ post.author }}</small>
                 <small>at {{ post.updated_at }}</small>
             </li>
         {% endfor %}
     </ul>
-</body>
+{% endblock %}

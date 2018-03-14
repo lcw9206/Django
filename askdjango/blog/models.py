@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.forms import ValidationError
+from django.conf import settings
 import re
 # Create your models here.
 
@@ -34,11 +35,13 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey('Post')
     author = models.CharField(max_length=20)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
 
 
 class Tag(models.Model):
