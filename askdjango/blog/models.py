@@ -4,7 +4,7 @@ from django.db import models
 from django.forms import ValidationError
 from django.conf import settings
 import re
-# Create your models here.
+
 
 def lnglat_validator(value):
     if not re.match(r'^([+-]?\d+\.?\d*),(\d+\.?\d*)$', value):
@@ -40,8 +40,6 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
 
 
 class Tag(models.Model):

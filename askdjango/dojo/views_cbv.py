@@ -1,6 +1,9 @@
+# blog/views_cbv.py
+
 from django.shortcuts import render
 from django.views.generic import View,TemplateView
 from django.http import HttpResponse, JsonResponse
+
 
 class PostListView1(View):
     'CBV: 직접 문자열로 HTML형식 응답하기'
@@ -16,6 +19,7 @@ class PostListView1(View):
         <p>{name}입니다.</p>
         '''
 
+
 post_list1 = PostListView1.as_view()
 
 
@@ -30,6 +34,7 @@ class PostListView2(TemplateView):
         context['name'] = '공유'
         return context
 
+
 post_list2 = PostListView2.as_view()
 
 
@@ -41,6 +46,7 @@ class PostListView3(View):
         return {
                 'message': '안녕, 파이썬&장고',
                 'items': ['파이썬', '장고', 'Celery', 'Azure', 'AWS'], }
+
 
 post_list3 = PostListView3.as_view()
 
