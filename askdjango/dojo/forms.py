@@ -3,8 +3,8 @@
 from django import forms
 
 
-def min_length_3_validators(value):
-    if(len(value) < 3):
+def min_length_3_validator(value):
+    if len(value) < 3:
         raise forms.ValidationError('3글자 이상 입력해주세요.')
 
 
@@ -14,6 +14,6 @@ class PostForm(forms.Form):
     하지만 forms는 DB와 관련이 없기에 문자열을 나타내는 CharField를 title과 동일하게 선언하고, 
     한줄위젯이 아닌 여러줄 위젯을 사용하기위해 widget=forms.Textarea로 선언했다.
     '''
-    title = forms.CharField(validators=min_length_3_validators)
+    title = forms.CharField(validators=[min_length_3_validator])
     content = forms.CharField(widget=forms.Textarea)
 
