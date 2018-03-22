@@ -1,4 +1,4 @@
-# blog/views_cbv.py
+# dojo/views_cbv.py
 
 from django.shortcuts import render
 from django.views.generic import View,TemplateView
