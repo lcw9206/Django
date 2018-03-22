@@ -10,24 +10,13 @@ def post_new(request):
     if request.method == 'POST':        # Post는 request, FILES를 제공받는다.
         form = PostForm(request.POST)   # 파일 업로드를 수행한 경우, request.FILES도 넣어줘야한다.
         if form.is_valid():             # is_valid()를 수행하는 시점에 form과 관련된 모든 validator들이 호출된다.
-
-            '''
-            Post로 넘어온 값을 저장하는 방법 1
-            post = Post()
-            post.title = form.cleaned_data['title']
-            post.content = form.cleaned_data['content']
+            post = form.save(commit=False)          # False로 중복되는 save를 지연시킨다.
+            post.ip = request.META['REMOTE_ADDR']
             post.save()
-            
-            방법 2 : 이 방법을 이용해 forms.py에 함수를 생성한 후, 불러온다. 
-            post = Post.objects.create(**form.cleaned_data)
-            post.save()
-            '''
-
-            post = form.save()
-
             return redirect('/dojo/')
     else:
         form = PostForm()
+
     return render(request,'dojo/post_form.html', {
         'form' : form,
     })
