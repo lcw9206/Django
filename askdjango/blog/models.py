@@ -3,6 +3,7 @@
 from django.db import models
 from django.forms import ValidationError
 from django.conf import settings
+from django.core.urlresolvers import reverse
 import re
 
 
@@ -32,6 +33,9 @@ class Post(models.Model):
 
     def __str__(self):      # 쿼리셋에서 title을 얻기위한 선언
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id])
 
 
 class Comment(models.Model):

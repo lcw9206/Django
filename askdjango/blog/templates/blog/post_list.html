@@ -12,6 +12,7 @@
             <div class="alert alert-info">
                 <li>공지사항</li>
             </div>
+            <a href="{% url "blog:post_new" %}" class="btn btn-primary pull-right">New Post</a>
             <form action="" method="get">
                 <input type="text" name="q" value="{{q}}"/>
                 <input type="submit" value="검색" class="btn btn-primary"/>
