@@ -27,6 +27,10 @@ class PostForm(forms.Form):
 
 # ModelForm을 이용, 위의 코드와 똑같은 결과가 나온다.
 class PostForm(forms.ModelForm):
+
     class Meta:
         model = Post
         fields = ['title', 'content']   # 유저에게 입력받을 값, __all__ 설정은 전체 필드를 추가
+        widgets = {
+            'user_agent' : forms.HiddenInput,   # 가시적으로 노출되지는 않지만, input 박스가 존재한다.
+        }
