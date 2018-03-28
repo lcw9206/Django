@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'bootstrap3',
     'debug_toolbar',
     'blog.apps.BlogConfig',
     'dojo.apps.DojoConfig',
     'accounts.apps.AccountsConfig',
+
 
 ]
 

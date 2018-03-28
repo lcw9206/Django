@@ -4,6 +4,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django import forms
 
+
 '''
 기존 form에서 유효성을 체크할 때와 달리, model에서는 입력뿐만 아니라 
 admin페이지에서도 유효성이 체크되는 것을 볼 수 있다.

@@ -2,3 +2,4 @@ ngo==1.9.1
 django-debug-toolbar
 django-extensions
 ipython[notebook]
+django-bootstrap3
