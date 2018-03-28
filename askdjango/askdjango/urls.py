@@ -4,6 +4,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
 from django.shortcuts import redirect
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'accounts/', include('accounts.urls', namespace='accounts')),
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)     # 직접 서빙을 했지만, DEBUG=FALSE일 경우 빈 리스트를 리턴
 
 if settings.DEBUG:
     import debug_toolbar
