@@ -26,7 +26,7 @@ def post_detail(request, id):
 
 def post_new(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()      # Model Form에 내재되어 있는 save 메서드 사용
             messages.success(request, "포스팅 저장 완료!")     # 메세지 등록 코드
