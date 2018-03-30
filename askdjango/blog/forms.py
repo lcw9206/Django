@@ -8,7 +8,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+        # widgets을 이용해 재 정의할 필드 지정
         widgets = {
-            'lnglat' : NaverMapPointWidget(attrs={'width': 600, 'height': 300}),
+            'lnglat' : NaverMapPointWidget(attrs={'width': 300, 'height': 300}),
         }
 

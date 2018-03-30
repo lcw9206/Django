@@ -1,20 +1,24 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId={{ naver_client_id }}"></script>
+
 <style>
     #naver_map_point_{{ id }} {
         width : {{ width }};
         height: {{ height }};
     }
 </style>
+
 <div id="naver_map_point_{{ id }}">
 
 </div>
 
 <script>
 
+// 함수화 및 호출을 이용해 변수 값이 오버라이드되는 것을 방지한다.
 (function () {
     var base_point = new naver.maps.LatLng({{ base_lat }}, {{ base_lng }});
 
     var dom = document.getElementById('naver_map_point_{{ id }}');
+
     var map = new naver.maps.Map(document.getElementById('naver_map_point_{{ id }}', {
         center : base_point
     }))
@@ -24,6 +28,7 @@
         map: map
     });
 
+    // 클릭 시, 마커 이동 'e.coord'에는 위도, 경도 값이 들어있다.
     naver.maps.Event.addListener(map, 'click', function(e){
         marker.setPosition(e.coord)
         document.getElementById('{{ id }}').value = e.coord.lng() + ',' + e.coord.lat();

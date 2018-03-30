@@ -15,11 +15,12 @@ class NaverMapPointWidget(forms.TextInput):
 
         context = {
             'naver_client_id' : settings.NAVER_CLIENT_ID,
-            'id' : attrs['id'],
+            'id' : attrs['id'],     # 현재 FormField의 html ID : id_lnglat
             'width' : width, 'height' : height,
             'base_lat' : self.BASE_LAT, 'base_lng' : self.BASE_LNG
         }
 
+        # value로 저장된 위도, 경도를 넘겨 지정된 위치를 마킹함.
         if value:
             try:
                 lng, lat = re.findall(r'[+-]?[\d\.]+', value)
@@ -27,7 +28,7 @@ class NaverMapPointWidget(forms.TextInput):
             except (IndexError, ValueError):
                 pass
 
-            attrs['readonly'] = 'readonly'  # 위, 경도 수정 불가
+            attrs['readonly'] = 'readonly'  # 위도, 경도 수정 불가
 
         '''
             render는 httpresponse의 인스턴스를 리턴해주므로 render_to_string을 사용해
@@ -35,6 +36,6 @@ class NaverMapPointWidget(forms.TextInput):
         '''
         html = render_to_string('widgets/naver_map_point_widget.html', context)
 
-        parent_html = super().render(name, value, attrs)
+        parent_html = super().render(name, value, attrs)    # TextInput으로 생성되는 html
 
         return parent_html + html
