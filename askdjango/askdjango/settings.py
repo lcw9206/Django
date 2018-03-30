@@ -145,3 +145,5 @@ from django.contrib.messages import constants
 
 MESSAGE_LEVEL = constants.DEBUG     # 선언해야 DEBUG 레벨의 메세지 사용가능
 MESSAGE_TAGS = {constants.ERROR : 'danger'}     # ERROR 레벨의 메세지를 danger로 변환해 부트스트랩 적용
+
+NAVER_CLIENT_ID = '_hIyAmBl3xxdmErCeWyM'    # 개별 client ID를 지정해야한다.
