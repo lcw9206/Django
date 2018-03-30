@@ -1,4 +1,5 @@
 {% extends 'blog/layout.html' %}
+{% load imagekit %}
 {% block title %}
     게시글 상세보기
 {% endblock %}
@@ -11,6 +12,18 @@
 
                 {% if post.photo %}
                     <img src="{{ post.photo.url }}" style="max-width: 100%;"/>
+
+                    {# 템플릿에서 직접 이미지 썸네일 처리하기 #}
+
+                    {# 1. 기본 형태 #}
+                    {% thumbnail "100x100" post.photo %}
+
+                    {# 2. 썸네일을 인스턴스화 시켜 커스터마이징하기 #}
+                    {% thumbnail "100x100" post.photo as thumb %}
+                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" />
+
+                    {# 3. 썸네일에 추가 속성 정의하기 #}
+                    {% thumbnail "100x100" post.photo -- style="" onclick="" %}
                 {% endif %}
 
                 {{ post.content|linebreaks }}

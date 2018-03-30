@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'imagekit',
     'bootstrap3',
     'debug_toolbar',
     'blog.apps.BlogConfig',
