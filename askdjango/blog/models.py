@@ -35,6 +35,7 @@ class Post(models.Model):
     def __str__(self):      # 쿼리셋에서 title을 얻기위한 선언
         return self.title
 
+    # Create, UpdateView에서 vaild 획득 시, post_detail로 이동
     def get_absolute_url(self):
         return reverse('blog:post_detail', args=[self.id])
 
