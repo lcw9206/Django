@@ -2,6 +2,7 @@
 
 from django.shortcuts import get_object_or_404,render, redirect
 from django.http import HttpResponse, JsonResponse
+from django.views.generic import DetailView
 from .forms import PostForm
 from .models import Post
 
@@ -32,7 +33,7 @@ post_detail = generate_view_fn(Post)
 '''
 
 
-
+'''
 class DetailView(object):
      def __init__(self, model):
         self.model = model
@@ -54,6 +55,10 @@ class DetailView(object):
 
 
 post_detail = DetailView.as_view(Post)
+'''
+
+
+post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
 
 
 def post_new(request):
