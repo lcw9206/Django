@@ -6,6 +6,13 @@ from .forms import PostForm
 from .models import Post
 
 
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request,'dojo/post_detail.html',{
+        'post': post,
+    })
+
+
 def post_new(request):
     if request.method == 'POST':        # Post는 request, FILES를 제공받는다.
         form = PostForm(request.POST)   # 파일 업로드를 수행한 경우, request.FILES도 넣어줘야한다.
