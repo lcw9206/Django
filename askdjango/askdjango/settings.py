@@ -131,19 +131,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'askdjango', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 INTERNAL_IPS = ["127.0.0.1"]
+
 
 from django.contrib.messages import constants
 
 MESSAGE_LEVEL = constants.DEBUG     # 선언해야 DEBUG 레벨의 메세지 사용가능
 MESSAGE_TAGS = {constants.ERROR : 'danger'}     # ERROR 레벨의 메세지를 danger로 변환해 부트스트랩 적용
+
 
 NAVER_CLIENT_ID = '_hIyAmBl3xxdmErCeWyM'    # 개별 client ID를 지정해야한다.
