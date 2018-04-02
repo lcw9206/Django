@@ -6,7 +6,7 @@ from .models import Post
 from .forms import PostForm
 
 def post_list(request):
-    qs = Post.objects.all() # QuerySet을 가져왔으나 아직 DB에 적용되지는 않는다. 왜냐? 접근하지 않았기 때문.
+    qs = get_object_or_404(Post)
 
     q = request.GET.get('q', '')
     if q:       # 쿼리가 있으면
@@ -18,7 +18,7 @@ def post_list(request):
 
 
 def post_detail(request, id):
-    post = Post.objects.get(id=id)
+    post = get_object_or_404(Post, id=id)
     return render(request, 'blog/post_detail.html', {
         'post' : post
     })
