@@ -6,9 +6,9 @@ from .models import Post
 from .forms import PostForm
 
 def post_list(request):
-    qs = get_object_or_404(Post)
-
+    qs = Post.objects.all()
     q = request.GET.get('q', '')
+
     if q:       # 쿼리가 있으면
         qs = qs.filter(title__icontains=q)
     return render(request, 'blog/post_list.html',{
