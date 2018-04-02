@@ -6,11 +6,28 @@ from .forms import PostForm
 from .models import Post
 
 
+'''
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     return render(request,'dojo/post_detail.html',{
         'post': post,
     })
+'''
+
+
+# 위의 post_detail과 동일한 기능, 그러나 CBV의 as_view를 직접 구현했다.
+def generate_view_fn(model):
+    def view_fn(request, id):
+        instance = get_object_or_404(model, id=id)
+        instance_name = model._meta.model_name
+        template_name = '{}/{}_detail.html'.format(model._meta.app_label, instance_name)
+        return render(request, template_name,{
+            instance_name: instance,
+        })
+    return view_fn
+
+
+post_detail = generate_view_fn(Post)
 
 
 def post_new(request):
