@@ -15,6 +15,7 @@ def post_detail(request, id):
 '''
 
 
+'''
 # 위의 post_detail과 동일한 기능, 그러나 CBV의 as_view를 직접 구현했다.
 def generate_view_fn(model):
     def view_fn(request, id):
@@ -28,6 +29,31 @@ def generate_view_fn(model):
 
 
 post_detail = generate_view_fn(Post)
+'''
+
+
+
+class DetailView(object):
+     def __init__(self, model):
+        self.model = model
+     def get_object(self, *args, **kwargs):
+        return get_object_or_404(self.model, id=kwargs['id'])
+     def get_template_name(self):
+        return '{}/{}_detail.html'.format(self.model._meta.app_label, self.model._meta.model_name)
+     def dispatch(self, request, *args, **kwargs):
+        return render(request, self.get_template_name(), {
+            self.model._meta.model_name: self.get_object(*args, **kwargs),
+        })
+
+     @classmethod
+     def as_view(cls, model):
+        def view(request, *args, **kwargs):
+            self = cls(model)
+            return self.dispatch(request, *args, **kwargs)
+        return view
+
+
+post_detail = DetailView.as_view(Post)
 
 
 def post_new(request):
