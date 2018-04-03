@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^dojo/', include('dojo.urls', namespace='dojo')),
-    url(r'accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'accounts/', include('accounts.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)     # 직접 서빙을 했지만, DEBUG=FALSE일 경우 빈 리스트를 리턴
