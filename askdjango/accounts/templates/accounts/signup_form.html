@@ -2,14 +2,16 @@
 
 {% block content %}
 <div class="container">
-    <div class="col-sm-12">
-        <form action="" method="post">
-            {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <button type="submit">가입</button>
-        </form>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="post">
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                </table>
+                <button type="submit">가입</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
